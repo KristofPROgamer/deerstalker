@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Deerstalker | Case findings</title>
+    <link rel="stylesheet" href="static/css/detective.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="case-sheet" aria-labelledby="page-title">
+        <header class="app-header">
+          <a class="brand" href="index.html" aria-label="Deerstalker home">
+            <span class="brand-mark" aria-hidden="true">D</span>
+            <span>
+              <span class="brand-name">DEERSTALKER</span>
+              <span class="brand-note">Local file investigation desk</span>
+            </span>
+          </a>
+          <div class="header-case">
+            <strong id="case-number">Case file</strong>
+            Findings ready for review
+          </div>
+        </header>
+
+        <div class="page-content">
+          <header class="masthead">
+            <div>
+              <span class="eyebrow">Case findings</span>
+              <h1 id="page-title">The evidence, arranged.</h1>
+              <p id="findings-description">Loading the case ledger and written report.</p>
+            </div>
+            <div class="case-index" id="summary-stamp">
+              <b>0</b> files examined<br>
+              <b>0</b> findings marked<br>
+              <b>0</b> errors recorded
+            </div>
+          </header>
+
+          <div class="findings-layout">
+            <div>
+              <section id="interesting-panel" class="panel interesting-panel" hidden aria-labelledby="interesting-title">
+                <div class="section-heading">
+                  <div>
+                    <span class="eyebrow">A closer look</span>
+                    <h2 id="interesting-title">Interesting Things</h2>
+                  </div>
+                </div>
+                <div id="interesting-list" class="interesting-list"></div>
+              </section>
+
+              <section class="panel" aria-labelledby="findings-title">
+                <div class="section-heading">
+                  <div>
+                    <span class="eyebrow">Filed evidence</span>
+                    <h2 id="findings-title">Findings</h2>
+                  </div>
+                  <button id="open-folder-button" class="button button--secondary" type="button">Open case folder</button>
+                </div>
+
+                <div class="metric-grid" aria-label="Findings summary">
+                  <div class="metric"><span id="total-count" class="metric-value">0</span><span class="metric-label">Examined</span></div>
+                  <div class="metric"><span id="finding-count" class="metric-value">0</span><span class="metric-label">Findings</span></div>
+                  <div class="metric"><span id="tag-count" class="metric-value">0</span><span class="metric-label">Top tag</span></div>
+                </div>
+
+                <div class="results-toolbar" aria-label="Filter findings">
+                  <label class="visually-hidden" for="search-findings">Search findings</label>
+                  <input id="search-findings" class="form-control" type="search" placeholder="Search paths, tags, or notes">
+                  <label class="visually-hidden" for="intent-filter">Filter by lead</label>
+                  <select id="intent-filter" class="form-control"><option value="all">All investigation leads</option></select>
+                  <label class="visually-hidden" for="sort-findings">Sort findings</label>
+                  <select id="sort-findings" class="form-control">
+                    <option value="score">Highest relevance</option>
+                    <option value="path">Path A–Z</option>
+                    <option value="intent">Investigation lead</option>
+                  </select>
+                </div>
+
+                <div id="results-grid" class="results-grid" aria-live="polite">
+                  <p class="loading-note">Sorting the evidence…</p>
+                </div>
+              </section>
+            </div>
+
+            <aside class="panel report-viewer" aria-labelledby="report-title">
+              <div class="section-heading">
+                <div>
+                  <span class="eyebrow">Written account</span>
+                  <h2 id="report-title">Case report</h2>
+                </div>
+              </div>
+              <div id="report-content" class="report-content" aria-live="polite">Opening the report…</div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="static/js/results.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Deerstalker | Investigation in progress</title>
+    <link rel="stylesheet" href="static/css/detective.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="case-sheet" aria-labelledby="page-title">
+        <header class="app-header">
+          <a class="brand" href="index.html" aria-label="Deerstalker home">
+            <span class="brand-mark" aria-hidden="true">D</span>
+            <span>
+              <span class="brand-name">DEERSTALKER</span>
+              <span class="brand-note">Local file investigation desk</span>
+            </span>
+          </a>
+          <div class="header-case">
+            <strong id="case-number">Case pending</strong>
+            Investigation in progress
+          </div>
+        </header>
+
+        <div class="page-content">
+          <header class="masthead">
+            <div>
+              <span class="eyebrow">The reading room</span>
+              <h1 id="page-title">Following the evidence.</h1>
+              <p id="status-description">Preparing the case file. This window updates as each local file is examined.</p>
+            </div>
+            <div class="case-index">
+              <b>Scope</b> recorded<br>
+              <b>Examine</b> in progress<br>
+              <b>Report</b> awaiting findings
+            </div>
+          </header>
+
+          <div class="progress-layout">
+            <section class="panel panel--ink progress-stage" aria-live="polite" aria-labelledby="stage-title">
+              <div>
+                <div class="lens-scene" aria-hidden="true">
+                  <svg viewBox="0 0 240 240" role="img">
+                    <path class="lens-path" d="M33 119c0-48 39-87 87-87s87 39 87 87-39 87-87 87-87-39-87-87Z"></path>
+                    <g class="search-sweep">
+                      <circle class="lens-rim" cx="104" cy="102" r="54"></circle>
+                      <path class="lens-handle" d="m143 143 47 47"></path>
+                    </g>
+                  </svg>
+                </div>
+                <p id="stage-title" class="status-word">Opening the case</p>
+                <p id="stage-detail" class="status-detail">The first ledger entry is being prepared.</p>
+              </div>
+            </section>
+
+            <aside class="panel" aria-labelledby="progress-title">
+              <div class="section-heading">
+                <div>
+                  <span class="eyebrow">Case progress</span>
+                  <h2 id="progress-title">Current record</h2>
+                </div>
+                <span id="status-chip" class="status-chip" data-status="pending">Pending</span>
+              </div>
+
+              <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Investigation progress">
+                <div id="progress-fill" class="progress-fill"></div>
+              </div>
+              <p id="progress-note" class="progress-note">0 of 0 files examined</p>
+
+              <div class="metric-grid" aria-label="Investigation counts">
+                <div class="metric"><span id="scanned-count" class="metric-value">0</span><span class="metric-label">Examined</span></div>
+                <div class="metric"><span id="matched-count" class="metric-value">0</span><span class="metric-label">Matched</span></div>
+                <div class="metric"><span id="error-count" class="metric-value">0</span><span class="metric-label">Errors</span></div>
+              </div>
+
+              <div class="current-file">
+                <span class="meta-label">Now examining</span>
+                <strong id="current-file">Waiting for the first file…</strong>
+              </div>
+
+              <div id="terminal-actions" class="alert" hidden></div>
+              <button id="cancel-button" class="button button--danger button--block" type="button">Cancel this investigation</button>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="static/js/progress.js"></script>
+  </body>
+</html>

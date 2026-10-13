@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Deerstalker | Open a case</title>
+    <link rel="stylesheet" href="static/css/detective.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="case-sheet" aria-labelledby="page-title">
+        <header class="app-header">
+          <a class="brand" href="index.html" aria-label="Deerstalker home">
+            <span class="brand-mark" aria-hidden="true">D</span>
+            <span>
+              <span class="brand-name">DEERSTALKER</span>
+              <span class="brand-note">Local file investigation desk</span>
+            </span>
+          </a>
+          <div class="header-case" aria-label="Case handling note">
+            <strong>Your files stay local</strong>
+            No cloud account. No uploaded dossier.
+          </div>
+        </header>
+
+        <div class="page-content">
+          <header class="masthead">
+            <div>
+              <span class="eyebrow">Open a new case</span>
+              <h1 id="page-title">What are you looking for?</h1>
+              <p>Choose the places to inspect, then give the investigation its brief. Deerstalker will review the files on this computer and assemble only the findings that matter.</p>
+            </div>
+            <div class="case-index" aria-label="Investigation steps">
+              <b>1. Scope</b> the search<br>
+              <b>2. Mark</b> what matters<br>
+              <b>3. Review</b> the case file
+            </div>
+          </header>
+
+          <form id="scan-form" class="setup-layout" novalidate>
+            <div class="main-dossier">
+              <section class="panel" aria-labelledby="roots-title">
+                <div class="section-heading">
+                  <div>
+                    <span class="eyebrow">Search locations</span>
+                    <h2 id="roots-title">Where should I look?</h2>
+                  </div>
+                  <div class="root-heading-actions">
+                    <p>Choose drives, folders, or an unlocked connected phone. Phone files stay local and are staged only while its case runs.</p>
+                    <button id="choose-root-button" class="button button--secondary button--compact" type="button">
+                      <span aria-hidden="true">+</span> Add a folder or drive
+                    </button>
+                  </div>
+                </div>
+                <div id="roots-list" class="roots-list" aria-live="polite">
+                  <p class="loading-note">Opening the map cabinet…</p>
+                </div>
+                <div class="portable-staging" aria-labelledby="portable-staging-title">
+                  <div>
+                    <span class="eyebrow" id="portable-staging-title">Connected-phone staging</span>
+                    <strong id="portable-stage-directory">Loading local staging folder…</strong>
+                    <p id="portable-stage-note">Phone files are copied, examined, and cleared in 5 GiB batches.</p>
+                  </div>
+                  <button id="choose-portable-stage-button" class="button button--secondary button--compact" type="button">
+                    Choose staging folder
+                  </button>
+                </div>
+              </section>
+
+              <section class="panel" aria-labelledby="intents-title">
+                <div class="section-heading">
+                  <div>
+                    <span class="eyebrow">Investigation brief</span>
+                    <h2 id="intents-title">What matters in this case?</h2>
+                  </div>
+                  <p>Mark as many leads as you need. The first pass is broad; only promising files get a closer look.</p>
+                </div>
+                <div id="intent-grid" class="intent-grid" aria-live="polite">
+                  <p class="loading-note">Laying out the evidence cards…</p>
+                </div>
+              </section>
+
+              <section class="panel" aria-labelledby="custom-title">
+                <div class="section-heading">
+                  <div>
+                    <span class="eyebrow">Your own lead</span>
+                    <h2 id="custom-title">Or describe what you are looking for</h2>
+                  </div>
+                </div>
+                <label class="form-field" for="custom-query">
+                  <span class="label">A name, a project, a phrase, or a hunch</span>
+                  <textarea id="custom-query" class="form-control" name="custom_query" placeholder="For example: anything related to my old startup, codename Falcon"></textarea>
+                  <span class="form-help">This can stand alone, or refine the investigation cards above.</span>
+                </label>
+              </section>
+            </div>
+
+            <aside class="case-rail panel panel--ink" aria-labelledby="case-summary-title">
+              <span class="eyebrow">Case docket</span>
+              <h2 id="case-summary-title">Before you begin</h2>
+              <p>Review the scope. When the case opens, you will see each stage of the local investigation as it happens.</p>
+              <div class="selection-summary" aria-live="polite">
+                <div><span>Locations marked</span><b id="root-count">0</b></div>
+                <div><span>Leads selected</span><b id="intent-count">0</b></div>
+                <div><span>Custom lead</span><b id="custom-status">No</b></div>
+              </div>
+              <button id="begin-button" class="button button--primary button--block" type="submit">
+                <span aria-hidden="true">⌕</span> Begin the investigation
+              </button>
+              <p class="form-help">You can cancel between files at any time. Original files are never moved.</p>
+              <div id="form-alert" class="alert" role="alert" hidden></div>
+            </aside>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="static/js/setup.js"></script>
+  </body>
+</html>

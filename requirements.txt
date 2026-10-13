@@ -1,0 +1,63 @@
+# Deerstalker — requirements
+# This file grows with every segment. Segment 1 only needs the two below.
+
+pydantic>=2.6
+python-dotenv>=1.0
+
+# Segment 2 — Ollama Client
+requests>=2.31
+
+# Segment 3 — Drive/Folder Discovery & File Walker
+psutil>=5.9
+
+# Segment 4 — Archive Handling
+# .zip / .tar / .tar.gz / .tgz / .tar.bz2 / .tbz2 / .tar.xz / .txz all work
+# via the stdlib (zipfile/tarfile) — no new install needed for those.
+# The two lines below are OPTIONAL: only needed for .7z / .rar support.
+# archives.py degrades gracefully (leaves the archive file unexpanded,
+# logs why) if these aren't installed — uncomment either to enable it.
+# py7zr>=0.20         # .7z support
+# rarfile>=4.1        # .rar support — also needs an unrar/unar/bsdtar binary on PATH
+
+# Segment 5 — Content Extraction: Text & Documents
+# Plain text/code files need nothing beyond the stdlib. These four back
+# the specific formats text_docs.py handles — unlike Segment 4's
+# py7zr/rarfile, all four are regular (non-optional) dependencies for
+# this segment; text_docs.py still degrades gracefully (metadata_only,
+# logged) rather than crashing if one is missing at runtime anyway.
+pypdf>=4.0            # .pdf text extraction
+pymupdf>=1.24         # .pdf page-to-image rendering fallback for scanned/image-only PDFs
+python-docx>=1.1      # .docx
+openpyxl>=3.1         # .xlsx
+python-pptx>=0.6.23   # .pptx
+
+# Segment 6 — Content Extraction: Media, Images & Binary/Unknown
+Pillow>=10.0           # images: open/downscale/re-encode + EXIF (regular dependency —
+                        # the vision-model core case; media_binary.py still degrades to
+                        # metadata_only, logged, rather than crashing if missing)
+mutagen>=1.47          # audio/video tag + basic technical metadata (regular dependency,
+                        # same degrade-gracefully posture as the Segment 5 libraries above)
+
+# HEIC / HEIF support (Segment 6 known-gap fix). Registers a Pillow image
+# opener so iPhone photos use the normal image-analysis path.
+pillow-heif>=0.18
+
+# Segment 12 backend API
+fastapi>=0.110
+uvicorn>=0.27
+
+# Segment 16 local desktop shell
+pywebview>=5.0
+
+# Windows MTP/portable-device discovery and temporary local staging
+pywin32>=311
+# ffprobe (part of ffmpeg) is used if found on PATH to supplement/refine audio/video
+# metadata (esp. video codec/resolution/frame rate, which mutagen mostly can't give for
+# non-MP4 containers) — an external binary, not a pip package, nothing to add here;
+# media_binary.py locates it via shutil.which() and simply skips this if it's absent.
+# python-magic>=0.4.27  # OPTIONAL: magic-byte MIME sniffing for unrecognized/binary
+                        # files. Needs the system libmagic library too (apt: libmagic1 /
+                        # brew: libmagic; Windows: also install python-magic-bin instead
+                        # of/alongside this). media_binary.py falls back to the
+                        # extension-based mime_type already on FileRecord if this isn't
+                        # installed — uncomment to enable sniffing.

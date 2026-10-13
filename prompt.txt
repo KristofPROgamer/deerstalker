@@ -1,0 +1,6 @@
+I'm resuming work on Deerstalker. Attached: DEERSTALKER_PLAN_v1_5.md (the plan) and PROJECT_STATE.md (what's actually built so far). Read both in full before touching anything, and treat PROJECT_STATE.md as the source of truth over the plan's own assumptions if the two ever disagree. Rules for this session:
+
+* Build exactly one segment at a time, in dependency order. Tell me which segment number you're starting before you start it, and stop when it's done -- don't cascade into the next one uninvited.
+* Both providers' API keys live in one file, api_keys.py, at the project root (gitignored, never logged even truncated), as two plain python lists: google_apikeys and ollama_apikeys. Never hardcode a key count or worker/slot count anywhere -- it's always len(google_apikeys) + len(ollama_apikeys), read fresh at Settings.load() time.
+* If a segment's spec conflicts with what's actually in the files on disk, the real files win -- flag the conflict in PROJECT_STATE.md rather than guessing or silently reconciling.
+* When a segment is done: run its acceptance test, update PROJECT_STATE.md with what changed and what's still unverified, then stop. Next segment to build: 20
